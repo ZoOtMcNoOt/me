@@ -1,0 +1,100 @@
+@layer utilities {
+  .content-grid {
+    @apply w-full mx-auto px-[var(--container-padding)];
+    max-width: var(--content-max-width);
+  }
+
+  .section-padding {
+    @apply py-[var(--section-spacing)];
+  }
+
+  .section-margin {
+    @apply my-[var(--section-spacing)];
+  }
+
+  .responsive-container {
+    @apply w-full mx-auto px-[var(--container-padding)];
+    max-width: var(--content-max-width);
+  }
+}
+
+/* Layout Container */
+.layout-container {
+  @apply relative flex min-h-screen flex-col;
+}
+
+.main-content {
+  @apply flex-1 w-full transition-all duration-[var(--transition-duration)];
+  padding-left: var(--sidebar-width, 0px);
+}
+
+@screen lg {
+  .main-content {
+    --sidebar-width: clamp(200px, 20vw, 250px);
+  }
+
+  .sidebar-collapsed .main-content {
+    --sidebar-width: 0px;
+  }
+}
+
+/* Section Content */
+.section-content {
+  @apply relative z-10 mx-auto max-w-[var(--content-max-width)] px-[var(--container-padding)];
+}
+
+/* Spacing Utilities */
+.stack-vertical {
+  @apply space-y-[var(--component-spacing)];
+}
+
+.stack-horizontal {
+  @apply space-x-[var(--component-spacing)];
+}
+
+/* Responsive Spacing */
+.responsive-padding {
+  @apply p-[var(--component-spacing)];
+}
+
+.responsive-margin {
+  @apply m-[var(--component-spacing)];
+}
+
+/* Layout Utilities */
+.center-content {
+  @apply flex items-center justify-center;
+}
+
+/* Grid System */
+.responsive-grid {
+  @apply grid grid-gap;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* Container Queries */
+@container (min-width: 640px) {
+  .container-responsive {
+    @apply grid-cols-2;
+  }
+}
+
+@container (min-width: 1024px) {
+  .container-responsive {
+    @apply grid-cols-3;
+  }
+}
+
+/* Intermediate Breakpoint */
+@media (min-width: 1000px) and (max-width: 1300px) {
+  :root {
+    --container-padding: clamp(1rem, 3vw, 1.5rem);
+    --content-max-width: calc(100vw - var(--main-content-margin) - var(--container-padding));
+  }
+
+  .responsive-container {
+    max-width: var(--content-max-width);
+    margin-right: var(--container-padding);
+  }
+}
+

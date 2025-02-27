@@ -385,6 +385,20 @@ function TechGraphInner({ onGraphReady }: TechGraphProps) {
     })
   }, [applyRadialLayout, filteredData, dimensions, resetForces, safelyManipulateGraph, zoomToFit])
 
+  // Add this conditional check before using window
+  useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+    
+    // Your existing window-dependent code
+    const handleResize = () => {
+      // ...existing code
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       {!isFullscreen ? (

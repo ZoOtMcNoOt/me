@@ -1,15 +1,20 @@
 "use client"
 
 import type React from "react"
-
 import { useCallback } from "react"
 import type { ForceGraphMethods } from "react-force-graph-2d"
 import type { GraphDimensions, GraphNode } from "../types"
+
+// Types at the top if specific to this hook
+interface RotateOptions {
+  // Options definition
+}
 
 export function useGraphLayout(
   graphRef: React.MutableRefObject<ForceGraphMethods | undefined>,
   dimensions: GraphDimensions,
 ) {
+  // Hook implementation with consistent callback patterns
   const explodeLayout = useCallback(
     (nodes: GraphNode[]) => {
       if (!graphRef.current) return
@@ -89,6 +94,7 @@ export function useGraphLayout(
     [dimensions, graphRef],
   )
 
+  // Return object with named functions
   return {
     explodeLayout,
     rotateLayout,

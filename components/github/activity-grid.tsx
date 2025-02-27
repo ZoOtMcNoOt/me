@@ -7,7 +7,7 @@ import { SectionTitle } from "@/components/layout/section-title"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 
-// Types
+// Types grouped at top
 interface ActivityDay {
   date: string
   count: number
@@ -24,11 +24,11 @@ interface ProcessedData {
     names: string[]
     positions: number[]
   }
-  firstDayOfWeek: number
+  totalContributions: number
 }
 
 export function ActivityGrid() {
-  // State
+  // State grouped together
   const [data, setData] = useState<GitHubData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -36,7 +36,7 @@ export function ActivityGrid() {
   const [retryCount, setRetryCount] = useState(0)
   const [isDesktop, setIsDesktop] = useState(true)
 
-  // Refs
+  // Refs grouped together
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
 
@@ -72,21 +72,21 @@ export function ActivityGrid() {
     return [...allDayLabels.slice(adjustedFirstDay), ...allDayLabels.slice(0, adjustedFirstDay)]
   }, [])
 
-  const formatDate = (dateString: string) => {
+  const formatDate = useCallback((dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
       year: "numeric",
     })
-  }
+  }, [])
 
-  const getActivityLevel = (count: number) => {
+  const getActivityLevel = useCallback((count: number) => {
     if (count === 0) return "activity-cell-level-0"
     if (count <= 3) return "activity-cell-level-1"
     if (count <= 6) return "activity-cell-level-2"
     if (count <= 9) return "activity-cell-level-3"
     return "activity-cell-level-4"
-  }
+  }, [])
 
   // Process GitHub activity data
   const processData = useCallback(
@@ -96,6 +96,7 @@ export function ActivityGrid() {
         weeks: [],
         monthData: getFixedMonthLabels(),
         firstDayOfWeek: 0, // Default to Sunday
+        totalContributions: rawData.totalContributions,
       }
 
       if (!rawData?.days?.length) return result
@@ -137,6 +138,7 @@ export function ActivityGrid() {
           weeks: [],
           monthData: getFixedMonthLabels(),
           firstDayOfWeek: 0,
+          totalContributions: 0,
         }
   }, [data, processData, getFixedMonthLabels])
 
@@ -144,9 +146,6 @@ export function ActivityGrid() {
   const dayLabels = useMemo(() => {
     return getDayLabels(processedData.firstDayOfWeek)
   }, [processedData.firstDayOfWeek, getDayLabels])
-
-  // Rest of the component implementation...
-  // [Previous implementation continues unchanged]
 
   // Fetch GitHub activity data
   useEffect(() => {

@@ -17,14 +17,16 @@ const TechGraph = dynamic(
   }
 )
 
-export default function ClientTechGraph(props: any) {
-  // This wrapper ensures the component only renders on client side
+export function ClientTechGraph(props: any) {
+  // State
   const [mounted, setMounted] = useState(false)
   
+  // Effects
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Render guard
   if (!mounted) {
     return (
       <div className="w-full h-[400px] md:h-[500px] rounded-lg border border-border/50 bg-card/30 flex items-center justify-center">
@@ -35,3 +37,5 @@ export default function ClientTechGraph(props: any) {
 
   return <TechGraph {...props} />
 }
+
+export default ClientTechGraph

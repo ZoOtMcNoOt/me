@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { Circle, ExternalLink, Shield, Brain, Stethoscope, type LucideIcon } from "lucide-react"
 import { SectionTitle } from "@/components/layout/section-title"
 
+// Animation constants grouped together
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -18,6 +19,7 @@ const slideIn = (direction: number) => ({
   transition: { duration: 0.5 },
 })
 
+// Type definition
 interface Experience {
   company: string
   role: string
@@ -29,6 +31,7 @@ interface Experience {
   icon: LucideIcon
 }
 
+// Data constant
 const experiences: Experience[] = [
   {
     company: "Palantir Technologies",
@@ -65,7 +68,8 @@ const experiences: Experience[] = [
   },
 ]
 
-export default function Experience() {
+// Named export
+export function Experience() {
   return (
     <section className="flex min-h-screen w-full flex-col items-start overflow-hidden section-padding">
       <div className="w-full max-w-[min(1400px,calc(100vw-var(--container-padding)*2))] mx-auto px-4 sm:px-6 lg:px-8 space-y-[var(--component-gap-xl)]">

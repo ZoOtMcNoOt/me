@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import AnimatedName from "./animated-name"
+import { AnimatedName } from "./animated-name"
 import { Button } from "@/components/ui/button"
 import { scrollToSection } from "@/lib/utils/navigation"
 import { SectionTitle } from "@/components/layout/section-title"

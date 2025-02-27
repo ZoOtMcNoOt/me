@@ -44,7 +44,7 @@ const fonts = {
 
 // Animation configurations
 const TRANSITION_DURATION = 0.3
-const ROTATION_INTERVAL = 4000 
+const ROTATION_INTERVAL = 5000 
 
 // Identity states with matching colors
 const nameStates = [
@@ -94,7 +94,7 @@ const nameStates = [
   },
 ]
 
-export default function AnimatedName() {
+export function AnimatedName() {
   const [currentState, setCurrentState] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const [isMounted, setIsMounted] = useState(false)

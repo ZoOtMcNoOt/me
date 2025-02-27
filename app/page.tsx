@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { ParallaxBackground } from "@/components/effects/parallax-background"
 import HeroSection from "@/components/home/hero-section"
 import About from "@/components/home/about"
-import Experience from "@/components/home/experience"
+import { Experience } from "@/components/home/experience"
 import Projects from "@/components/home/projects"
 import { scrollToSection } from "@/lib/utils/navigation"
 import { ActivityGrid } from "@/components/github/activity-grid"

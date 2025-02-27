@@ -1,0 +1,370 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Grid System */
+:root {
+  /* Grid Configuration */
+  --grid-columns: 12;
+  --grid-gap: clamp(1rem, 2vw, 2rem);
+  --container-padding: clamp(1rem, 5vw, 3rem);
+  --section-spacing: clamp(5rem, 12vw, 10rem);
+
+  /* Responsive Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Typography Scale */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1.125rem + 0.75vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --font-size-3xl: clamp(1.875rem, 1.5rem + 1.25vw, 2.5rem);
+  --font-size-4xl: clamp(2.25rem, 1.75rem + 1.5vw, 3rem);
+
+  /* Spacing Scale */
+  --space-1: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --space-2: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+  --space-3: clamp(0.75rem, 0.6rem + 0.75vw, 1.5rem);
+  --space-4: clamp(1rem, 0.8rem + 1vw, 2rem);
+  --space-5: clamp(1.5rem, 1.2rem + 1.5vw, 3rem);
+  --space-6: clamp(2rem, 1.6rem + 2vw, 4rem);
+  --space-8: clamp(3rem, 2.4rem + 3vw, 6rem);
+  --space-10: clamp(4rem, 3.2rem + 4vw, 8rem);
+  --space-12: clamp(5rem, 4rem + 5vw, 10rem);
+  --space-16: clamp(6rem, 4.8rem + 6vw, 12rem);
+
+  /* Animation Timings */
+  --transition-duration: 300ms;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 800ms;
+
+  --sidebar-width: 250px;
+
+  /* Section Spacing */
+  --section-spacing: clamp(5rem, 12vw, 10rem);
+  --section-spacing-sm: clamp(4rem, 10vh, 6rem);
+  --section-spacing-md: clamp(5rem, 15vh, 8rem);
+  --section-spacing-lg: clamp(6rem, 20vh, 12rem);
+
+  /* Component Spacing */
+  --component-gap-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --component-gap-sm: clamp(0.5rem, 1vw, 1rem);
+  --component-gap-md: clamp(1rem, 2vw, 2rem);
+  --component-gap-lg: clamp(2rem, 4vw, 4rem);
+  --component-gap-xl: clamp(3rem, 6vw, 6rem);
+
+  /* Enhanced Container Widths */
+  --container-width-sm: 640px;
+  --container-width-md: 768px;
+  --container-width-lg: 1024px;
+  --container-width-xl: 1280px;
+
+  /* Enhanced Component Spacing */
+  --component-gap-sm: clamp(0.5rem, 1vw, 1rem);
+  --component-gap-md: clamp(1rem, 2vw, 2rem);
+  --component-gap-lg: clamp(2rem, 4vw, 4rem);
+}
+
+/* Enhanced Grid Classes */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gap);
+  padding: 0 var(--container-padding);
+  margin: 0 auto;
+  max-width: var(--breakpoint-2xl);
+  width: 100%;
+}
+
+.grid-item {
+  grid-column: span 12;
+}
+
+@media (min-width: 640px) {
+  .grid-item-sm {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-item-md {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-item-lg {
+    grid-column: span 3;
+  }
+}
+
+/* Section Styles */
+.section {
+  padding: var(--section-spacing) 0;
+  position: relative;
+}
+
+.section-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced Section Classes */
+.section-padding-sm {
+  padding-top: var(--section-spacing-sm);
+  padding-bottom: var(--section-spacing-sm);
+}
+
+.section-padding-md {
+  padding-top: var(--section-spacing-md);
+  padding-bottom: var(--section-spacing-md);
+}
+
+.section-padding-lg {
+  padding-top: var(--section-spacing-lg);
+  padding-bottom: var(--section-spacing-lg);
+}
+
+/* Enhanced Parallax Classes */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  will-change: transform;
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn var(--animation-duration) var(--transition-timing) forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp var(--animation-duration) var(--transition-timing) forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base Theme */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+
+    /* Glass effect variables */
+    --glass-blur: 12px;
+    --glass-bg-opacity: 0.3;
+    --glass-border-opacity: 0.5;
+    --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Utility Classes */
+.glass-panel {
+  @apply backdrop-blur bg-background/80 border-border/50;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Hide scrollbar but allow scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@layer utilities {
+  /* Glass effect utilities */
+  .glass-effect {
+    @apply backdrop-blur-[var(--glass-blur)] 
+           bg-background/30 
+           border-2 
+           border-border/50;
+  }
+
+  .glass-panel {
+    @apply backdrop-blur-md 
+           bg-background/30 
+           border-2 
+           border-border/50 
+           shadow-md;
+  }
+
+  /* Border and shadow utilities */
+  .border-themed {
+    @apply border-2 
+           border-border/50 
+           shadow-md;
+  }
+
+  /* Custom shadow utilities */
+  .shadow-glass {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Custom border utilities */
+  .border-glass {
+    @apply border-2 
+           border-border/50;
+  }
+
+  /* Update responsive container utility */
+  .responsive-container {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: min(1400px, calc(100vw - var(--container-padding) * 2));
+  }
+
+  /* Add sidebar state utility */
+  .peer-data-\[state\=collapsed\] .responsive-container {
+    max-width: min(var(--content-max-width), 100vw);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbars but keep scrolling functionality */
+.activity-grid-scroll::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.activity-grid-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Add this to your global.css or a component CSS file */
+
+/* Dark mode styling */
+.dark .activity-cell-level-0 {
+  background-color: rgba(240, 246, 252, 0.06);
+}
+.dark .activity-cell-level-1 {
+  background-color: rgba(0, 250, 154, 0.15);
+}
+.dark .activity-cell-level-2 {
+  background-color: rgba(0, 250, 154, 0.4);
+}
+.dark .activity-cell-level-3 {
+  background-color: rgba(0, 250, 154, 0.7);
+}
+.dark .activity-cell-level-4 {
+  background-color: rgba(0, 250, 154, 0.9);
+}
+
+/* Light mode styling */
+.activity-cell-level-0 {
+  background-color: #ebedf0;
+}
+.activity-cell-level-1 {
+  background-color: #9be9a8;
+}
+.activity-cell-level-2 {
+  background-color: #40c463;
+}
+.activity-cell-level-3 {
+  background-color: #30a14e;
+}
+.activity-cell-level-4 {
+  background-color: #216e39;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+

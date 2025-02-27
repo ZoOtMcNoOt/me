@@ -97,6 +97,7 @@ const nameStates = [
 export default function AnimatedName() {
   const [currentState, setCurrentState] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
   const controls = useAnimation()
   const containerRef = useRef<HTMLDivElement>(null)
   const shouldReduceMotion = useReducedMotion()
@@ -263,6 +264,25 @@ export default function AnimatedName() {
     }),
     [currentState, isHovered, shouldReduceMotion],
   )
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Render a placeholder during server rendering to avoid hydration mismatch
+  if (!isMounted) {
+    return (
+      <div className="relative w-full">
+        <div className="flex flex-col items-center lg:items-start">
+          <div className="h-[60px] sm:h-[70px] md:h-[80px] lg:h-[90px] xl:h-[100px] flex items-center justify-center lg:justify-start">
+            <h1 className="cursor-pointer select-none text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+              Grant McNatt
+            </h1>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div 

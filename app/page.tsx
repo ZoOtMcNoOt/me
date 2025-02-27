@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useEffect } from "react"
+import dynamic from 'next/dynamic'
 
 import { ParallaxBackground } from "@/components/effects/parallax-background"
 import HeroSection from "@/components/home/hero-section"
@@ -14,6 +15,13 @@ import { DetailedSkills } from "@/components/skills/detailed-skills"
 import { Contact } from "@/components/home/contact"
 import { PageLayout, Section, SectionDivider } from "@/components/layout/page-layout"
 import ClientParallaxBackground from "@/components/effects/parallax-background-client"
+import ClientHalftoneWave from "@/components/effects/halftone-wave-client"
+
+// Import with no SSR to prevent hydration issues
+const HalftoneBackground = dynamic(
+  () => import('@/components/effects/halftone-background'),
+  { ssr: false }
+)
 
 export default function Home() {
   useEffect(() => {
@@ -27,8 +35,7 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <ClientParallaxBackground />
-
+      <HalftoneBackground />
       <div className="relative z-10">
         {/* Hero Section */}
         <Section id="home">

@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useTheme } from 'next-themes'
 
-// Dynamic import with SSR disabled
-const ParallaxBackground = dynamic(
-  () => import('./parallax-background-dots').then(mod => mod.ParallaxBackground),
+// Dynamically import with SSR disabled to prevent hydration issues
+const HalftoneWave = dynamic(
+  () => import('./halftone-wave').then(mod => mod.HalftoneWave),
   { 
     ssr: false,
     loading: () => (
@@ -15,7 +15,7 @@ const ParallaxBackground = dynamic(
   }
 )
 
-export default function ClientParallaxBackground() {
+export default function ClientHalftoneWave() {
   const [isMounted, setIsMounted] = useState(false)
   const { theme } = useTheme()
   
@@ -27,6 +27,5 @@ export default function ClientParallaxBackground() {
     return <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/80 to-background/90" />
   }
 
-  return <ParallaxBackground theme={theme} />
+  return <HalftoneWave theme={theme} />
 }
-

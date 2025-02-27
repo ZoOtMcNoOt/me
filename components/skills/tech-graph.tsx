@@ -435,8 +435,8 @@ function TechGraphInner({ onGraphReady }: TechGraphProps) {
               renderNodeLabel(node, ctx, globalScale, highlightNodes.has(node.id))
             }}
             backgroundColor="transparent"
-            width={dimensions?.width || 800}
-            height={dimensions?.height || 600}
+            width={dimensions?.width || 500}
+            height={dimensions?.height || 400} // Use fixed height fallback instead of window.innerHeight
             onNodeHover={handleNodeHover}
             onNodeClick={handleNodeClick}
             enableZoom={true}

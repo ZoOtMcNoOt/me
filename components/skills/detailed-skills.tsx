@@ -1,20 +1,21 @@
 "use client"
 import { useState } from "react"
 import { motion } from "framer-motion"
+// Import the client wrapper instead of the direct component
+import ClientTechGraph from "@/components/skills/tech-graph-client"
 
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AnimatedCard } from "@/components/ui/animated-card"
-import { TechGraph } from "@/components/skills/tech-graph"
 import { graphData } from "@/data/graph-data"
 import { SectionTitle } from "@/components/layout/section-title"
 import { skillDetails } from "@/data/skill-details"
 
 const SkillGraph = () => {
   return (
-    <div className="h-full w-full">
-      <TechGraph />
+    <div className="w-full h-[400px] md:h-[500px]">
+      <ClientTechGraph />
     </div>
   )
 }
@@ -123,15 +124,11 @@ export function DetailedSkills() {
             <TabsTrigger value="graph">Graph View</TabsTrigger>
             <TabsTrigger value="list">List View</TabsTrigger>
           </TabsList>
-
           <TabsContent value="graph">
-            <AnimatedCard className="overflow-hidden glass-panel rounded-lg">
-              <div className="h-[600px] w-full">
-                <SkillGraph />
-              </div>
-            </AnimatedCard>
+            <div className="glass-panel rounded-lg">
+              <SkillGraph />
+            </div>
           </TabsContent>
-
           <TabsContent value="list">
             <div className="glass-panel rounded-lg">
               <SkillList />

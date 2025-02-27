@@ -13,6 +13,7 @@ import { ActivityGrid } from "@/components/github/activity-grid"
 import { DetailedSkills } from "@/components/skills/detailed-skills"
 import { Contact } from "@/components/home/contact"
 import { PageLayout, Section, SectionDivider } from "@/components/layout/page-layout"
+import ClientParallaxBackground from "@/components/effects/parallax-background-client"
 
 export default function Home() {
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <ParallaxBackground />
+      <ClientParallaxBackground />
 
       <div className="relative z-10">
         {/* Hero Section */}
